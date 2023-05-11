@@ -9,7 +9,11 @@
           <link rel="stylesheet" href="{% static 'global/css/style.css' %}">
 </head>
 <body>
-          <h1>Template base</h1>
+    <h1>Template base</h1>
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
       
 </body>
 </html>

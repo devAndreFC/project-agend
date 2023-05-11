@@ -106,6 +106,7 @@ env.bak/
 venv.bak/ 
 static/
 media/
+project/local_settings.py
 
 # mkdocs documentation 
 /site 
