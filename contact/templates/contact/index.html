@@ -1,6 +1,6 @@
 {% extends 'global/base.html' %}
 {% block content %}
-    <h1> index contatos </h1>
+{% if contacts %}
     <div class="responsive-table">
         <table class="contacts-table">
             <caption class="table-caption">
@@ -40,5 +40,10 @@
             </tbody>
         </table>
     </div>
+{% else %}
+<h1 class="single-contact-name">
+    Nenhum resultado para "{{ request.GET.q.strip }}".
+</h1>
+{% endif %}
 {% endblock content %}
 
