@@ -10,4 +10,7 @@ urlpatterns = [
     path('contact/create/', views.create, name='create'),
 
     path('', views.index, name='index'),
+
+    # user
+    path('user/create', views.register, name='register'),
 ]
