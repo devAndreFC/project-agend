@@ -12,21 +12,32 @@
                 </a>
             </li>                
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    Link 2
+                <a href="{% url 'contact:register' %}" class="menu-link">
+                    Criar usuário
+                </a>
+            </li>            
+            <li class="menu-item">
+                <a href="{% url 'contact:login' %}" class="menu-link">
+                    Login
+                </a>
+            </li>            
+            <li class="menu-item">
+                <a href="{% url 'contact:user_update' %}" class="menu-link">
+                    Perfil
                 </a>
             </li>
+            <div class="search">
+                <form action="{% url 'contact:search' %}" method="GET">
+                    <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search Contacts" 
+                    id="search" 
+                    name="q"
+                    value="{{ request.GET.q.strip }}">
+                </form>
+            </div>
         </ul>
     </nav>
-    <div class="search">
-        <form action="{% url 'contact:search' %}" method="GET">
-            <input 
-            type="text" 
-            class="search-input" 
-            placeholder="Search" 
-            id="search" 
-            name="q"
-            value="{{ request.GET.q.strip }}">
-        </form>
-    </div>
+
 </header>
