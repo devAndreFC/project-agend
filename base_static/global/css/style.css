@@ -244,7 +244,16 @@ svg {
   border: 1px solid rgba(0, 0, 255, 0.3);
 }
 
+.itens {
+  margin-left: 40px;
+}
+
 .form-wrapper {
+  max-width: 60rem;
+  margin: var(--spacing) auto;
+}
+
+.centro {
   max-width: 60rem;
   margin: var(--spacing) auto;
 }
@@ -336,4 +345,15 @@ svg {
 
 .btn-delete {
   background: tomato;
+}
+
+/*------------------footer----------------*/
+.main_footer {
+  background: var(--clr-black);
+}
+
+.colfooter {
+  width: 50%;
+  height: 50%;
+  display: inline-block;
 }

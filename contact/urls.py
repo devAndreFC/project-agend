@@ -3,13 +3,15 @@ from contact import views
 
 app_name = 'contact'
 urlpatterns = [
-    path('search/', views.search, name='search'),    
+    path('', views.index, name='index'),
+    path('search/', views.search, name='search'),
+    path('sobre/', views.sobre, name='sobre'),
+
+    # contact (CRUD)
     path('<int:contact_id>/detail/', views.contact, name='contact'),
     path('<int:contact_id>/update/', views.update, name='update'),
     path('<int:contact_id>/delete/', views.delete, name='delete'),
     path('contact/create/', views.create, name='create'),
-
-    path('', views.index, name='index'),
 
     # user
     path('user/create/', views.register, name='register'),

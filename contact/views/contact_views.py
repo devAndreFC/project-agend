@@ -4,16 +4,20 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
+def sobre(request):
+    return render(request, 'sobre.html')
+
+
 def index(request):
     contacts = Contact.objects.filter(show=True).order_by('-id')
-    paginator = Paginator(contacts, 10)  
+    paginator = Paginator(contacts, 10) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj': page_obj,
         'site_title': 'Contatos - '
     }
-    
+
     return render(
         request, 'contact/index.html', context
     )
@@ -35,7 +39,7 @@ def search(request):
     paginator = Paginator(contacts, 10)  
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
         'page_obj': page_obj,
         'site_title': 'Search - ',

@@ -1,31 +1,30 @@
 <header class="header">
     <h1 class="header-heading">
-        <a href="{% url 'contact:index' %}" class="header-link">
-            Agenda
-        </a>
+        <a href="{% url 'contact:index' %}" class="header-link">Agenda</a>
     </h1>
     <nav class="menu">
-        <ul class="menu-list">
+        <ul class="menu-list">            
+            {% if user.is_authenticated %}
             <li class="menu-item">
-                <a href="{% url 'contact:create' %}" class="menu-link">
-                    Criar contato
-                </a>
-            </li>                
-            <li class="menu-item">
-                <a href="{% url 'contact:register' %}" class="menu-link">
-                    Criar usuário
-                </a>
-            </li>            
-            <li class="menu-item">
-                <a href="{% url 'contact:login' %}" class="menu-link">
-                    Login
-                </a>
-            </li>            
-            <li class="menu-item">
-                <a href="{% url 'contact:user_update' %}" class="menu-link">
-                    Perfil
-                </a>
+                <a href="{% url 'contact:create' %}" class="menu-link">Criar contato</a>
             </li>
+            <li class="menu-item">
+                <a href="{% url 'contact:user_update' %}" class="menu-link">Perfil</a>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'contact:logout' %}" class="menu-link">Logout</a>
+            </li> 
+            {% else %}
+            <li class="menu-item">
+                <a href="{% url 'contact:login' %}" class="menu-link">Login</a>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'contact:register' %}" class="menu-link">Criar usuário</a>
+            </li>     
+            {% endif %}     
+            <li class="menu-item">
+                <a href="{% url 'contact:sobre' %}" class="menu-link">Sobre</a>
+            </li>     
             <div class="search">
                 <form action="{% url 'contact:search' %}" method="GET">
                     <input 
