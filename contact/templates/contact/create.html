@@ -1,52 +1,56 @@
 {% extends 'global/base.html' %}
 
 {% block content %}
-  <div class="form-wrapper">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="container py-5 h-100">  
+          <div class="form-wrapper">
+            <h2>Contact</h2>
+            <form 
+              action="{{ form.action }}"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
 
-    <h2>Contact</h2>
-    
-    <form 
-      action="{{ form.action }}"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-        {% csrf_token %}
+              <div class="form-content">
+                {% for field in form %}
+                <div class="form-group">
+                  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                  {{ field }}
+                  {{ field.errors }}
 
-      <div class="form-content">
-        {% for field in form %}
-        <div class="form-group">
-          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          {{ field }}
-          {{ field.errors }}
+                  {% if field.help_text %}
+                    <p class="help-text">{{ field.help_text }}</p>
+                  {% endif %}
 
-          {% if field.help_text %}
-          <p class="help-text">{{ field.help_text }}</p>
-          {% endif %}
+                  {% if field.name == 'picture' and field.value.url %}
+                    <div class="form-group">
+                      <img src="{{ field.value.url }}" alt="{{ field.name }}"></img>
+                    </div>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
 
-          {% if field.name == 'picture' and field.value.url %}
-            <div class="form-group">
-              <p>essa é a imagem</p>
-              <img src="{{ field.value.url }}" alt="{{ field.name }}"></img>
-            </div>
-          {% endif %}
-        </div>
-        {% endfor %}
-      </div>
-
-      {% if form.non_field_errors %}
-      <div class="form-content">
-          <div class="form-group">
-            {{ form.non_field_errors }}
+              {% if form.non_field_errors %}
+                <div class="form-content">
+                    <div class="form-group">
+                      {{ form.non_field_errors }}
+                    </div>
+                </div>
+              
+              {% endif %}
+              <div class="form-content">
+                <div class="form-group">
+                  <button class="btn btn-info btn-lg btn-block" type="submit">Send</button>
+                </div>
+              </div>
+            </form>
           </div>
-      {% endif %}
-      
-   
-      <div class="form-content">
-        <div class="form-group">
-          <button class="btn" type="submit">Send</button>
         </div>
-
-
-    </form>
+      </div>
+    </div>
   </div>
 {% endblock content %}

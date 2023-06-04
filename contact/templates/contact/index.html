@@ -1,49 +1,62 @@
 {% extends 'global/base.html' %}
 {% block content %}
-{% if page_obj %}
-    <div class="responsive-table">
-        <table class="contacts-table">
-            <caption class="table-caption">
-                Contacts
-            </caption>
-            <thead>
-                <tr class="table-row table0row-header">
-                    <th class="table-header">ID</th>
-                    <th class="table-header">First Name</th>
-                    <th class="table-header">Last Name</th>
-                    <th class="table-header">Phone</th>
-                    <th class="table-header">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for contact in page_obj %}
-                    <tr class="table-row">
-                        <td class="table-cel">
-                            <a 
-                            class="table-link" 
-                            href="{% url 'contact:contact' contact.id %}">
-                                {{ contact.id}}
-                        </td>                        
-                        <td class="table-cel">
-                            {{ contact.first_name}}
-                        </td>                        
-                        <td class="table-cel">
-                            {{ contact.last_name}}
-                        </td>
-                        <td class="table-cel">
-                            {{ contact.phone}}
-                        </td>
-                        <td class="table-cel">
-                            {{ contact.email}}
-                        </td>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-{% else %}
-<h1 class="single-contact-name">
-    Nenhum resultado para "{{ request.GET.q.strip }}".
-</h1>
-{% endif %}
-{% endblock content %}
+    {% if page_obj.number < 2 %}
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo ao site de contatos!</h1>
+            <p class="lead">Este projeto foi desenvolvido com o framework Django, como prática de um curso.</p>
+            <hr class="my-4">
+            <p>Fique a vontade para cadastrar contatos e testar o site.</p>
+            <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'contact:sobre' %}" role="button">Mais informações.</a>
+            </p>
+        </div>
+    {% endif %}
+    <br>
+    <h3 class="text-center">Contatos</h3>
+    <div class="section" >
+        {% if page_obj %}
+            
+            <div class="table-responsive center">
+                <table class="table table-striped table-hover">
 
+                    <thead class="thead-dark">
+                        <tr class="table-row table0row-header">
+                            <th class="table-header">ID</th>
+                            <th class="table-header">First Name</th>
+                            <th class="table-header">Last Name</th>
+                            <th class="table-header">Phone</th>
+                            <th class="table-header">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in page_obj %}
+                            <tr class="table-row">
+                                <td class="table-cel">
+                                    <a 
+                                    class="table-link" 
+                                    href="{% url 'contact:contact' contact.id %}">
+                                        {{ contact.id}}
+                                </td>                        
+                                <td class="table-cel">
+                                    {{ contact.first_name}}
+                                </td>                        
+                                <td class="table-cel">
+                                    {{ contact.last_name}}
+                                </td>
+                                <td class="table-cel">
+                                    {{ contact.phone}}
+                                </td>
+                                <td class="table-cel">
+                                    {{ contact.email}}
+                                </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+        <h1 class="single-contact-name">
+            Nenhum resultado para "{{ request.GET.q.strip }}".
+        </h1>
+        {% endif %}
+    </div>
+{% endblock content %}

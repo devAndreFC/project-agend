@@ -1,31 +1,31 @@
 <form action="{{ form.action }}" method="POST">
-    {% csrf_token %}
+  {% csrf_token %}
 
-    <div class="form-content">
-      {% for field in form %}
+  <div class="form-content">
+    {% for field in form %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+
+      {% if field.help_text %}
+      <p class="help-text">{{ field.help_text }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if form.non_field_errors %}
+  <div class="form-content">
       <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {{ field.errors }}
-
-        {% if field.help_text %}
-        <p class="help-text">{{ field.help_text }}</p>
-        {% endif %}
+        {{ form.non_field_errors }}
       </div>
-      {% endfor %}
+  {% endif %}
+
+  <div class="form-content">
+    <div class="form-group">
+      <button class="btn btn-info btn-lg btn-block" type="submit">Send</button>
     </div>
 
-    {% if form.non_field_errors %}
-    <div class="form-content">
-        <div class="form-group">
-          {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-  
-    <div class="form-content">
-      <div class="form-group">
-        <button class="btn" type="submit">Send</button>
-      </div>
 
-
-  </form>
+</form>

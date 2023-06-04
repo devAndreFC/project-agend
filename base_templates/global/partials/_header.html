@@ -1,42 +1,47 @@
-<header class="header">
-    <h1 class="header-heading">
-        <a href="{% url 'contact:index' %}" class="header-link">Agenda</a>
-    </h1>
-    <nav class="menu">
-        <ul class="menu-list">            
-            {% if user.is_authenticated %}
-            <li class="menu-item">
-                <a href="{% url 'contact:create' %}" class="menu-link">Criar contato</a>
-            </li>
-            <li class="menu-item">
-                <a href="{% url 'contact:user_update' %}" class="menu-link">Perfil</a>
-            </li>
-            <li class="menu-item">
-                <a href="{% url 'contact:logout' %}" class="menu-link">Logout</a>
-            </li> 
-            {% else %}
-            <li class="menu-item">
-                <a href="{% url 'contact:login' %}" class="menu-link">Login</a>
-            </li>
-            <li class="menu-item">
-                <a href="{% url 'contact:register' %}" class="menu-link">Criar usuário</a>
-            </li>     
-            {% endif %}     
-            <li class="menu-item">
-                <a href="{% url 'contact:sobre' %}" class="menu-link">Sobre</a>
-            </li>     
-            <div class="search">
-                <form action="{% url 'contact:search' %}" method="GET">
-                    <input 
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'contact:index' %}">Agenda</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:create' %}">Criar contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:user_update' %}">Meu Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:logout' %}">Logout</a>
+                    </li>
+                {% else %} 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:login' %}">Fazer login</a>
+                    </li>            
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:register' %}">Cadastre-se</a>
+                    </li>            
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:sobre' %}">Sobre o site</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href=""></a>
+                </li>  
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{% url 'contact:search' %}" method="GET">
+                <input class="form-control mr-sm-2" 
                     type="text" 
-                    class="search-input" 
-                    placeholder="Search Contacts" 
+                    placeholder="Pesquisar" 
+                    aria-label="Pesquisar"
                     id="search" 
                     name="q"
-                    value="{{ request.GET.q.strip }}">
-                </form>
-            </div>
-        </ul>
+                    value="{{ request.GET.q.strip }}"
+                >
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+        </div>
     </nav>
-
-</header>

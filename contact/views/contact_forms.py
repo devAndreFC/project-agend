@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from contact.forms import ContactForm
 from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from contact.models import Contact
@@ -20,6 +21,7 @@ def create(request):
             contact = form.save(commit=False)
             contact.owner = request.user
             contact.save()
+            messages.success(request, 'Contato cadastrado com sucesso!')
             return redirect('contact:update', contact_id=contact.pk)
 
         return render(
